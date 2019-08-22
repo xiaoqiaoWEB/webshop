@@ -16,12 +16,29 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1566389506265_8612';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = ['adminauth'];
+
+  config.adminauth = {
+    match: '/admin'
+  }
+
+  config.session={
+    key:'SESSION_ID',
+    maxAge:864000,
+    httpOnly: true,
+    encrypt: true,
+    renew: true //  延长会话有效期       
+  }
 
   config.view = {
     mapping: {
       '.html': 'ejs',
-    },
+    }
+  }
+
+  config.mongoose = {
+    url: 'mongodb://shopadmin:123456@127.0.0.1:27017/eggshop',
+    options: {}
   }
 
   // add your user config here

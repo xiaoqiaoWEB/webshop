@@ -1,8 +1,8 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+var BaseController =require('./base.js');
 
-class MangerController extends Controller {
+class MangerController extends BaseController {
   async index() {
     await this.ctx.render('admin/manger/index')
   }
