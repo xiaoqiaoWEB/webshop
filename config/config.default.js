@@ -30,6 +30,14 @@ module.exports = appInfo => {
     renew: true //  延长会话有效期       
   }
 
+  config.uploadDir = 'app/public/admin/upload'
+
+  // config.cluster = {
+  //   listen: {
+  //     port: 9000
+  //   }
+  // }
+
   config.view = {
     mapping: {
       '.html': 'ejs',

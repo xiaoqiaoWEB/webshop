@@ -42,26 +42,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                     <%for(var i=0; i<adminList.length; i++){%>       
-                    <tr>
-                        <td><%= adminList[i].username %></td>
-                        <td><%= adminList[i].mobile %></td>
-                        <td><%= adminList[i].email %></td>
-                        <td><%= adminList[i].role[0].title %></td>
-                        <td><%= adminList[i].add_time %></td>
-                        <td>
-                            <%if( adminList[i].status == 1){%>
-                                <img src="/public/admin/images/yes.gif" alt="" onclick="app.changeStatus(this, 'Admin', 'status', '<%=adminList[i]._id%>')" />
-                            <% }else{ %>
-                                <img src="/public/admin/images/no.gif" alt="" onclick="app.changeStatus(this, 'Admin', 'status', '<%=adminList[i]._id%>')">
-                            <%}%>
-                        </td>
-                        <td class="text-center">
-                            <a href="/admin/manger/edit?id=<%= adminList[i]._id %>">修改</a>
-                            <a href="/admin/delete?model=Admin&id=<%= adminList[i]._id %>">删除</a>
-                        </td>
-                    </tr>
-                    <%}%>
+                       
+                      <tr>
+                          <td>fdgh</td>
+                          <td>sdfsdf</td>
+                          <td>sdfdsf</td>
+                          <td>sfdsf</td>
+                          <td>sdfsdf</td>
+                          <td></td>
+                          <td class="text-center">
+                            dsff
+                          </td>
+                      </tr>
+                    
                     </tbody>
                 </table>
             </div>
