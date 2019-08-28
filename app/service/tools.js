@@ -30,7 +30,7 @@ class ToolsService extends Service {
   }
 
   async getUploadFile(filename) {
-    console.log('AAA')
+    //console.log('AAA')
 
     // 获取当前日期
     var day=sd.format(new Date(), 'YYYYMMDD');

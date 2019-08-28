@@ -40,7 +40,10 @@ module.exports = app => {
   // 轮播图管理
   router.get('/admin/focus', controller.admin.focus.index);
   router.get('/admin/focus/add', controller.admin.focus.add);
+  router.get('/admin/focus/edit', controller.admin.focus.edit);
   router.post('/admin/focus/doAdd', controller.admin.focus.doAdd);
+  router.post('/admin/focus/doEdit', controller.admin.focus.doEdit);
+
 
 
   // 公共路由

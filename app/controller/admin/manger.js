@@ -57,7 +57,7 @@ class MangerController extends BaseController {
   async doEdit() {
     let {id, username, mobile, email, role_id} = this.ctx.request.body;
     //role_id = mongoose.Types.ObjectId()
-    console.log(role_id, 'aaaaaaa')
+    //console.log(role_id, 'aaaaaaa')
     await this.ctx.model.Admin.updateOne({"_id": id}, {
       username, mobile, email, role_id
     })

@@ -32,29 +32,48 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr class="th">
-                        <th>管理员名称</th>
-                        <th>管理员号码</th>
-                        <th>管理员邮箱</th>
-                        <th>管理员角色</th>
-                        <th>添加时间</th>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>类型</th>
+                        <th>图片</th>
+                        <th>排序</th>
+                        <th>地址</th>
                         <th>状态</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                       
+                      <%for(var i=0; i<list.length; i++){%> 
                       <tr>
-                          <td>fdgh</td>
-                          <td>sdfsdf</td>
-                          <td>sdfdsf</td>
-                          <td>sfdsf</td>
-                          <td>sdfsdf</td>
-                          <td></td>
+                          <td><%=i+1%></td>  
+                          <td><%=list[i].title%></td>
+                          <td>
+                              <%if(list[i].type==1){%>
+                                网站
+                               <%}else if(list[i].type==2){%> 
+                                手机
+                                <%}else{%>
+                                 小程序   
+                                <%}%> 
+                          </td>
+                          <td>
+                              <img src="<%=list[i].focus_img%>" alt="" width="200px" class="pic">
+                          </td>
+                          <td><%=list[i].sort%></td>
+                          <td><%=list[i].link%></td>
+                          <td>
+                            <%if(list[i].status==1){%>
+                                <img src="/public/admin/images/yes.gif" onclick="app.changeStatus(this,'Focus','status','<%=list[i]._id%>')" />
+                            <%}else{%>
+                                <img src="/public/admin/images/no.gif" onclick="app.changeStatus(this,'Focus','status','<%=list[i]._id%>')" />
+                            <%}%>
+                          </td>
                           <td class="text-center">
-                            dsff
+                            <a href="/admin/focus/edit?id=<%=list[i]._id%>">修改</a>
+                            <a href="javascript:;">删除</a>
                           </td>
                       </tr>
-                    
+                      <%}%>
                     </tbody>
                 </table>
             </div>
