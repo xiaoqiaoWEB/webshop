@@ -59,7 +59,9 @@
                           <td>
                               <img src="<%=list[i].focus_img%>" alt="" width="200px" class="pic">
                           </td>
-                          <td><%=list[i].sort%></td>
+                          <td>
+                              <div onclick="app.editNum(this, 'Focus', 'sort', '<%=list[i]._id%>')"><%=list[i].sort%></div>
+                          </td>
                           <td><%=list[i].link%></td>
                           <td>
                             <%if(list[i].status==1){%>

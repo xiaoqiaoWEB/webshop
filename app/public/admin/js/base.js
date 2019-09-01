@@ -27,6 +27,35 @@ const app = {
 				}
 			}
 		})
+	},
+	editNum: function (el, model, attr, id) {
+		var val = $(el).html();
+
+		var input = $('<input value="">');
+		
+		$(el).html(input);
+
+		$(input).trigger('focus').val(val);
+
+		$(input).click(function () {
+			return false;
+		})
+
+		$(input).blur(function () {
+			var num = $(input).val();
+
+			$.get('/admin/editNum', {
+				model,
+				attr,
+				num,
+				id
+			}, function (data) {
+				console.log(data);
+				$(el).html(num);
+			})
+		
+		})
+	
 	}
 }
 

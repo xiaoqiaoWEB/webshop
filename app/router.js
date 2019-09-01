@@ -44,12 +44,12 @@ module.exports = app => {
   router.post('/admin/focus/doAdd', controller.admin.focus.doAdd);
   router.post('/admin/focus/doEdit', controller.admin.focus.doEdit);
 
-
-
   // 公共路由
   router.get('/admin/delete', controller.admin.base.delete);
   // 验证码
   router.get('/admin/verify', controller.admin.base.verify);
   // 改变状态
   router.get('/admin/changeStatus', controller.admin.base.changeStatus);
+  // 改变 排序  价格 == 
+  router.get('/admin/editNum', controller.admin.base.editNum);
 };

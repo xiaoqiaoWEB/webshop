@@ -65,6 +65,27 @@ class BaseController extends Controller {
       this.ctx.body={"message":'更新失败,参数错误',"success":false};
     }
   }
+
+  async editNum () {
+    let {model, attr, num, id} = this.ctx.request.query;
+    let data = await this.ctx.model[model].find({'_id': id});
+    if(data.length > 0) {
+      if(num) {
+        var json = {
+          [attr]: num
+        }
+      }
+      
+      let updata = await this.ctx.model[model].updateOne({"_id": id},json);
+      if(updata) {
+        this.ctx.body={"message":'更新成功',"success":true};
+      } else {
+        this.ctx.body={"message":'更新失败',"success":false};
+      }
+    } else {
+      this.ctx.body={"message":'更新失败,参数错误',"success":false};
+    }
+  }
 }
 
 module.exports = BaseController;
