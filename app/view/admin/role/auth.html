@@ -1,79 +1,50 @@
 <%- include ../public/shop_header.html %>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2">
-            <%- include ../public/shop_silder.html %>
-        </div>
-        <div class="col-sm-10">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        角色授权
+    </div>
+    <div class="panel-body">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    角色授权
-                </div>
-                <div class="panel-body">
-
-                    <form action="/admin/role/doAuth" method="POST">
+        <form action="/admin/role/doAuth" method="POST">
 
 
-                        <input type="hidden" name="_csrf" value="<%=csrf%>" />
+            <input type="hidden" name="_csrf" value="<%=csrf%>" />
 
-                        <input type="hidden" name="role_id" value="<%=role_id%>" />
+            <input type="hidden" name="role_id" value="<%=role_id%>" />
 
 
-                        <table class="table table-bordered">
+            <table class="table table-bordered">
 
 
 
-                            <%for(var i=0;i<accessLit.length;i++){%>
-                            <tr>
-                                <td align="right" style="background: #D8E2FA; padding-right: 10px; width: 150px;">
-                                    <label>
-                                        <input 
-                                            type="checkbox" 
-                                            class="module_cbo" 
-                                            value="<%=accessLit[i]._id %>"
-                                            name="access_node[]"
-                                            <%if(accessLit[i].checked){%>checked<%}%>
-                                        />&nbsp;&nbsp;
-                                        <%=accessLit[i].module_name %>
-                                    </label>
-                                </td>
-                                <td>
+                <%for(var i=0;i<accessLit.length;i++){%>
+                <tr>
+                    <td align="right" style="background: #D8E2FA; padding-right: 10px; width: 150px;">
+                        <label>
+                            <input type="checkbox" class="module_cbo" value="<%=accessLit[i]._id %>"
+                                name="access_node[]" <%if(accessLit[i].checked){%>checked<%}%>
+                            />&nbsp;&nbsp;
+                            <%=accessLit[i].module_name %> </label> </td> <td>
 
 
-                                    <%for(var j=0;j<accessLit[i].item.length;j++){%>
-                                    &nbsp;&nbsp;
-                                    <label>
-                                        <input 
-                                        type="checkbox" 
-                                        class="action_cbo" 
-                                        value="<%=accessLit[i].item[j]._id%>"
-                                        name="access_node[]"
-                                        <%if(accessLit[i].item[j].checked){%>checked<%}%>
-                                    >
-                                        &nbsp;&nbsp;<%=accessLit[i].item[j].action_name%> </label>&nbsp;&nbsp;
-                                    <%}%>      
-                                        </td>
-                                    </tr>
+                            <%for(var j=0;j<accessLit[i].item.length;j++){%>
+                            &nbsp;&nbsp;
+                            <label>
+                                <input type="checkbox" class="action_cbo" value="<%=accessLit[i].item[j]._id%>"
+                                    name="access_node[]" <%if(accessLit[i].item[j].checked){%>checked<%}%>
+                        >
+                            &nbsp;&nbsp;<%=accessLit[i].item[j].action_name%> </label>&nbsp;&nbsp; <%}%>      
+                            </td>
+                        </tr>
 
-                             <%}%>
-                        </table>
+                 <%}%> </table> <button type="submit" class="btn btn-primary">提交</button>
+
+        </form>
 
 
-                        <button type="submit" class="btn btn-primary">提交</button>
-
-                    </form>
-
-
-                </div>
-            </div>
-
-
-
-
-        </div>
     </div>
 </div>
+
 
 </body>
 

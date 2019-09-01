@@ -1,44 +1,35 @@
 <%- include ../public/shop_header.html %>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2">
-          <%- include ../public/shop_silder.html %>
-        </div>
-        <div class="col-sm-10">
-            <div class="panel panel-default">              
-			    <div class="panel-heading">
-                  增加角色
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive input-form">
-                        <form action="/admin/role/doEdit" method="post">
-                            <input type="hidden" name="_csrf" value="<%=csrf%>">
-                            <input type="hidden" name="_id" value="<%= data._id %>">
-                            <ul>
-                                <li>  角色名称: <input type="text" name="title" value="<%=data.title%>"/></li>
-                                <li>
-                                    角色描述:
-                                    <textarea name="desc" id="" cols="60" rows="8"><%=data.desc%></textarea>
-                                </li>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        增加角色
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive input-form">
+            <form action="/admin/role/doEdit" method="post">
+                <input type="hidden" name="_csrf" value="<%=csrf%>">
+                <input type="hidden" name="_id" value="<%= data._id %>">
+                <ul>
+                    <li> 角色名称: <input type="text" name="title" value="<%=data.title%>" /></li>
+                    <li>
+                        角色描述:
+                        <textarea name="desc" id="" cols="60" rows="8"><%=data.desc%></textarea>
+                    </li>
 
-                                <li>
-                                    <br/>
-                                    <button type="submit" class="btn btn-default">提交</button>
-                                </li>
+                    <li>
+                        <br />
+                        <button type="submit" class="btn btn-default">提交</button>
+                    </li>
 
-                            </ul>
+                </ul>
 
 
-                        </form>
-                    </div>
-                </div>
-
-
-            </div>
-
+            </form>
         </div>
     </div>
+
+
 </div>
 
 </body>
+
 </html>

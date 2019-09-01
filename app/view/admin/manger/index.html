@@ -1,74 +1,64 @@
-
 <%- include ../public/shop_header.html %>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2">
-            <%- include ../public/shop_silder.html %>
-        </div>
-        <div class="col-sm-10">
-           
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    搜索
-                </div>
-                <div class="panel-body">
-                    <form role="form" class="form-inline">
-                        <div class="form-group">
-                            <label for="name">名称</label>
-                            <input type="text" class="form-control" id="name" placeholder="请输入名称">
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-default">开始搜索</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!--
-                列表展示
-            -->
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr class="th">
-                        <th>管理员名称</th>
-                        <th>管理员号码</th>
-                        <th>管理员邮箱</th>
-                        <th>管理员角色</th>
-                        <th>添加时间</th>
-                        <th>状态</th>
-                        <th class="text-center">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                     <%for(var i=0; i<adminList.length; i++){%>       
-                    <tr>
-                        <td><%= adminList[i].username %></td>
-                        <td><%= adminList[i].mobile %></td>
-                        <td><%= adminList[i].email %></td>
-                        <td><%= adminList[i].role[0].title %></td>
-                        <td><%= adminList[i].add_time %></td>
-                        <td>
-                            <%if( adminList[i].status == 1){%>
-                                <img src="/public/admin/images/yes.gif" alt="" onclick="app.changeStatus(this, 'Admin', 'status', '<%=adminList[i]._id%>')" />
-                            <% }else{ %>
-                                <img src="/public/admin/images/no.gif" alt="" onclick="app.changeStatus(this, 'Admin', 'status', '<%=adminList[i]._id%>')">
-                            <%}%>
-                        </td>
-                        <td class="text-center">
-                            <a href="/admin/manger/edit?id=<%= adminList[i]._id %>">修改</a>
-                            <a href="/admin/delete?model=Admin&id=<%= adminList[i]._id %>">删除</a>
-                        </td>
-                    </tr>
-                    <%}%>
-                    </tbody>
-                </table>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        搜索
+    </div>
+    <div class="panel-body">
+        <form role="form" class="form-inline">
+            <div class="form-group">
+                <label for="name">名称</label>
+                <input type="text" class="form-control" id="name" placeholder="请输入名称">
             </div>
 
-        </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">开始搜索</button>
+            </div>
+        </form>
     </div>
 </div>
+<!--
+    列表展示
+-->
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="th">
+                <th>管理员名称</th>
+                <th>管理员号码</th>
+                <th>管理员邮箱</th>
+                <th>管理员角色</th>
+                <th>添加时间</th>
+                <th>状态</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(var i=0; i<adminList.length; i++){%>
+            <tr>
+                <td><%= adminList[i].username %></td>
+                <td><%= adminList[i].mobile %></td>
+                <td><%= adminList[i].email %></td>
+                <td><%= adminList[i].role[0].title %></td>
+                <td><%= helper.relativeTime(adminList[i].add_time) %></td>
+                <td>
+                    <%if( adminList[i].status == 1){%>
+                    <img src="/public/admin/images/yes.gif" alt=""
+                        onclick="app.changeStatus(this, 'Admin', 'status', '<%=adminList[i]._id%>')" />
+                    <% }else{ %>
+                    <img src="/public/admin/images/no.gif" alt=""
+                        onclick="app.changeStatus(this, 'Admin', 'status', '<%=adminList[i]._id%>')">
+                    <%}%>
+            </td>
+            <td class="text-center">
+                <a href="/admin/manger/edit?id=<%= adminList[i]._id %>">修改</a>
+                    <a href="/admin/delete?model=Admin&id=<%= adminList[i]._id %>">删除</a>
+                </td>
+            </tr>
+            <%}%>
+        </tbody>
+    </table>
+</div>
+
 
 </body>
 </html>
