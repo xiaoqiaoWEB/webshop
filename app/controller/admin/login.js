@@ -28,7 +28,7 @@ class LoginController extends BaseController {
         // 登录成功 
         // 保存用户信息
         this.ctx.session.userInfo = result[0];
-        this.ctx.redirect('/admin/manger');
+        this.ctx.redirect('/admin');
       } else {
         await this.error('/admin/login','用户名或者密码不对');
       }

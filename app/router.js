@@ -7,10 +7,7 @@ module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
 
-
-
   // loing
-
   router.get('/admin', controller.admin.main.index);
   router.get('/admin/welcome', controller.admin.main.welcome);
 
@@ -50,6 +47,19 @@ module.exports = app => {
   router.get('/admin/focus/edit', controller.admin.focus.edit);
   router.post('/admin/focus/doAdd', controller.admin.focus.doAdd);
   router.post('/admin/focus/doEdit', controller.admin.focus.doEdit);
+
+  // 商品类型
+  router.get('/admin/goodsType/index', controller.admin.goodsType.index);
+  router.get('/admin/goodsType/add', controller.admin.goodsType.add);
+  router.get('/admin/goodsType/edit', controller.admin.goodsType.edit);
+
+  router.post('/admin/goodsType/doAdd', controller.admin.goodsType.doAdd);
+  router.post('/admin/goodsType/doEdit', controller.admin.goodsType.doEdit);
+
+ 
+
+
+
 
   // 公共路由
   router.get('/admin/delete', controller.admin.base.delete);
