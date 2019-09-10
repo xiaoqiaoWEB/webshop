@@ -52,9 +52,12 @@ module.exports = app => {
   router.get('/admin/goodsType/index', controller.admin.goodsType.index);
   router.get('/admin/goodsType/add', controller.admin.goodsType.add);
   router.get('/admin/goodsType/edit', controller.admin.goodsType.edit);
-
   router.post('/admin/goodsType/doAdd', controller.admin.goodsType.doAdd);
   router.post('/admin/goodsType/doEdit', controller.admin.goodsType.doEdit);
+
+  // 商品类型属性
+  router.get('/admin/goodsTypeAttribute', controller.admin.goodsTypeAttribute.index)
+  router.get('/admin/goodsTypeAttribute/add', controller.admin.goodsTypeAttribute.add)
 
  
 
