@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a href="/admin/goodsTypeAttribute/add" class="btn btn-primary">增加商品类型属性</a>
+        <a href="/admin/goodsTypeAttribute/add?id=<%=cate_id%>" class="btn btn-primary">增加商品类型属性</a>
     </div>
     <div class="panel-body">
         <div class="table-responsive">
@@ -10,10 +10,12 @@
                 <thead>
                     <tr class="th">
                         <th>序号</th>
+                        <th>属性名称</th>
                         <th>商品类型</th>
-                        <th>类型描述</th>
-                        <th>状态</th>
+                        <th>属性值的录入方式</th>
+                        <th>可选值列表</th>    
                         <th>添加时间</th>
+                        <th class="text-center">状态</th>      
                         <th class="text-center">操作</th>
                     </tr>
                 </thead>
@@ -28,21 +30,31 @@
                             <%}%>
                         </td>
                         <td><%=list[i].title%></td>
-                        <td><%=list[i].desc%></td>
-                        <td>
-                            <%if( list[i].status == 1){%>
-                            <img src="/public/admin/images/yes.gif" alt=""
-                                onclick="app.changeStatus(this, 'GoodsType', 'status', '<%=list[i]._id%>')" />
-                            <% }else{ %>
-                            <img src="/public/admin/images/no.gif" alt=""
-                                onclick="app.changeStatus(this, 'GoodsType', 'status', '<%=list[i]._id%>')">
-                            <%}%>
+                        <td><%=list[i].goods_type[0].title%></td>
+                        <td>                                                
+                            <%if(list[i].attr_type==1){%>
+                                单行文本框
+                            <%}else if(list[i].attr_type==2){%>
+                                多行文本框                                                 
+                            <%}else if(list[i].attr_type==3){%>
+                                select下拉框   
+                            <%}%>                                                
                         </td>
+                        <td><%=list[i].attr_value%></td>
                         <td><%= helper.relativeTime(list[i].add_time) %></td>
                         <td class="text-center">
-                            <a href="/admin/goodsTypeAttribute?id=<%-list[i]._id%>">设置属性</a>
-                            <a href="/admin/goodsType/edit?id=<%= list[i]._id %>">修改</a>
-                            <a href="/admin/delete?model=GoodsType&id=<%= list[i]._id %>">删除</a>
+                            <%if( list[i].status == 1){%>
+                            <img src="/public/admin/images/yes.gif" alt=""
+                                onclick="app.changeStatus(this, 'GoodsTypeAttribute', 'status', '<%=list[i]._id%>')" />
+                            <% }else{ %>
+                            <img src="/public/admin/images/no.gif" alt=""
+                                onclick="app.changeStatus(this, 'GoodsTypeAttribute', 'status', '<%=list[i]._id%>')">
+                            <%}%>
+                        </td>
+                       
+                        <td class="text-center">
+                            <a href="">修改</a>　
+                            <a  class="delete" href="">删除</a>
                         </td>
                     </tr>
                     <%}%>

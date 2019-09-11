@@ -7,7 +7,7 @@ $(function () {
 const app = {
 	init: function () {
 		this.toggleAside();
-		this.resizeIframe();
+		//this.resizeIframe();
 	},
 	toggleAside: function () {
 
@@ -72,11 +72,7 @@ const app = {
 	},
 
 	resizeIframe: function(){
-
 		var heights = document.documentElement.clientHeight-100;	
-		
-		
-
 		document.getElementById('rightMain').height = heights
 	},
 

@@ -40,7 +40,7 @@
                         </td>
                         <td><%= helper.relativeTime(list[i].add_time) %></td>
                         <td class="text-center">
-                            <a href="/admin/goodsTypeAttribute?id=<%-list[i]._id%>">设置属性</a>
+                            <a href="/admin/goodsTypeAttribute?id=<%=list[i]._id%>">设置属性</a>
                             <a href="/admin/goodsType/edit?id=<%= list[i]._id %>">修改</a>
                             <a href="/admin/delete?model=GoodsType&id=<%= list[i]._id %>">删除</a>
                         </td>
