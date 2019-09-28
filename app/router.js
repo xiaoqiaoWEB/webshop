@@ -15,7 +15,6 @@ module.exports = app => {
   router.get('/admin/login', controller.admin.login.index);
   router.post('/admin/doLogin', controller.admin.login.doLogin);
   router.get('/admin/loginOut', controller.admin.login.loginOut);
-  
   // 管理员
   router.get('/admin/manger', controller.admin.manger.index);
   router.get('/admin/manger/edit', controller.admin.manger.edit);
@@ -59,11 +58,6 @@ module.exports = app => {
   router.get('/admin/goodsTypeAttribute', controller.admin.goodsTypeAttribute.index)
   router.get('/admin/goodsTypeAttribute/add', controller.admin.goodsTypeAttribute.add)
   router.post('/admin/goodsTypeAttribute/doAdd', controller.admin.goodsTypeAttribute.doAdd)
-
- 
-
-
-
 
   // 公共路由
   router.get('/admin/delete', controller.admin.base.delete);

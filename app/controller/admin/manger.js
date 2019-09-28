@@ -1,7 +1,7 @@
 'use strict';
 
-var BaseController =require('./base.js');
-var mongoose = require('mongoose');
+const BaseController = require('./base.js');
+const mongoose = require('mongoose');
 
 class MangerController extends BaseController {
   async index() {
@@ -13,10 +13,10 @@ class MangerController extends BaseController {
         as: 'role'
       }
     }])
-    //console.log(adminList)
+    console.log(adminList)
     await this.ctx.render('admin/manger/index', {
-      adminList
-    })
+      adminList,
+    });
   }
 
   async add() {

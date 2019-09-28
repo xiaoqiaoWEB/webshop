@@ -19,15 +19,15 @@ module.exports = appInfo => {
   config.middleware = ['adminauth'];
 
   config.adminauth = {
-    match: '/admin'
+    match: '/admin',
   }
 
-  config.session={
-    key:'SESSION_ID',
-    maxAge: 1000*3600*30,
+  config.session = {
+    key: 'SESSION_ID',
+    maxAge: 1000 * 3600 * 30,
     httpOnly: true,
     encrypt: true,
-    renew: true //  延长会话有效期       
+    renew: true,
   }
 
   config.uploadDir = 'app/public/admin/upload'
@@ -46,8 +46,7 @@ module.exports = appInfo => {
 
   config.mongoose = {
     url: 'mongodb://127.0.0.1:27017/eggshop',
-    options: {}
-  }
+  } 
 
   // add your user config here
   const userConfig = {

@@ -1,5 +1,3 @@
-//父类
-
 'use strict';
 const Controller = require('egg').Controller;
 
@@ -9,7 +7,7 @@ class BaseController extends Controller {
     // this.
     await this.ctx.render('admin/public/success', {
       redirectUrl: redirectUrl,
-      msg: msg || '操作成功！'
+      msg: msg || '操作成功！',
     });
 
   }

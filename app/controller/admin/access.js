@@ -1,29 +1,28 @@
 'use strict';
 
-var BaseController =require('./base.js');
+const BaseController = require('./base.js');
 
 class AccessController extends BaseController {
   async index() {
-    
-    let result = await this.ctx.model.Access.aggregate([
+    const result = await this.ctx.model.Access.aggregate([
       {
         $lookup: {
-          from:'access',
-          localField:'_id',
-          foreignField:'module_id',
-          as:'item'      
-        }
+          from: 'access',
+          localField: '_id',
+          foreignField: 'module_id',
+          as: 'item',    
+        },
       },
       {
-        $match:{
-          "module_id":'0'
-        }
-      }
-    ])
+        $match: {
+          "module_id": '0',
+        },
+      },
+    ]);
 
     await this.ctx.render('admin/access/index',{
-      list: result
-    })
+      list: result,
+    });
   }
 
   async add() {
