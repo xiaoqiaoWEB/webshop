@@ -3,10 +3,8 @@ const Controller = require('egg').Controller;
 
 class BaseController extends Controller {
   async success(redirectUrl, msg) {
-
-    // this.
     await this.ctx.render('admin/public/success', {
-      redirectUrl: redirectUrl,
+      redirectUrl,
       msg: msg || '操作成功！',
     });
 
@@ -14,14 +12,14 @@ class BaseController extends Controller {
 
   async error(redirectUrl, msg) {
     await this.ctx.render('admin/public/error', {
-      redirectUrl: redirectUrl,
-      msg: msg || '操作失败！'
+      redirectUrl,
+      msg: msg || '操作失败！',
     });
 
   }
 
   async verify() {
-    var captcha = await this.service.tools.captcha(); //服务里面的方法
+    const captcha = await this.service.tools.captcha();
 
     this.ctx.response.type = 'image/svg+xml'; /*指定返回的类型*/
 
@@ -31,9 +29,8 @@ class BaseController extends Controller {
   async delete() {
     let {
       model,
-      id
+      id,
     } = this.ctx.request.query;
-    
     await this.ctx.model[model].deleteOne({
       '_id': id
     });
@@ -73,7 +70,6 @@ class BaseController extends Controller {
           [attr]: num
         }
       }
-      
       let updata = await this.ctx.model[model].updateOne({"_id": id},json);
       if(updata) {
         this.ctx.body={"message":'更新成功',"success":true};
