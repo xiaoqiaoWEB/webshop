@@ -61,12 +61,12 @@ class AccessController extends BaseController {
     let reqBody = this.ctx.request.body;
     let module_id = reqBody.module_id;
 
-    if(module_id != 0) {
+    if (module_id !== 0) {
       reqBody.module_id = this.app.mongoose.Types.ObjectId(module_id);
     }
 
     await this.ctx.model.Access.updateOne({'_id': reqBody.id}, reqBody)
-    await this.success('/admin/access','修改权限成功');
+    await this.success('/admin/access', '修改权限成功');
   }
 }
 
