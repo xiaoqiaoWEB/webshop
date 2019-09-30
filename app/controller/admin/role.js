@@ -21,7 +21,7 @@ class RoleController extends BaseController {
     });
     await role.save();
     await this.success('/admin/role', '添加角色成功！');
-    //await this.ctx.render('admin/role/add')
+    // await this.ctx.render('admin/role/add')
   }
 
   async edit() {
