@@ -42,7 +42,7 @@ class AccessController extends BaseController {
 
     let access = new this.ctx.model.Access(requestBody);
     access.save();
-    await this.success('/admin/access','增加权限成功');
+    await this.success('/admin/access', '增加权限成功');
   }
 
   async edit() {
@@ -53,9 +53,9 @@ class AccessController extends BaseController {
     let list = await this.ctx.model.Access.find({"module_id": '0'});
     await this.ctx.render('admin/access/edit', {
       list,
-      detail: dataDetail[0]
-    })
-  } 
+      detail: dataDetail[0],
+    });
+  }
 
   async doEdit() {
     let reqBody = this.ctx.request.body;
@@ -65,7 +65,7 @@ class AccessController extends BaseController {
       reqBody.module_id = this.app.mongoose.Types.ObjectId(module_id);
     }
 
-    await this.ctx.model.Access.updateOne({'_id': reqBody.id}, reqBody)
+    await this.ctx.model.Access.updateOne({'_id': reqBody.id}, reqBody);
     await this.success('/admin/access', '修改权限成功');
   }
 }
