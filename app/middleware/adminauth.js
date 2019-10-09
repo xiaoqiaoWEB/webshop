@@ -10,7 +10,7 @@ module.exports = () => {
     // 记录上一页
     ctx.state.prevPage = ctx.request.headers['referer'];
 
-    let requrl = ctx.request.url
+    let requrl = ctx.request.url;
     let pathname = url.parse(requrl).pathname;
 
     // 判断是否登录

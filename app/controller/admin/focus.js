@@ -3,14 +3,13 @@
 const fs = require('fs');
 const pump = require('mz-modules/pump');
 
-// const Controller = require('egg').Controller;
 const BaseController = require('./base.js');
 
 class FocusController extends BaseController {
   async index() {
     let list = await this.ctx.model.Focus.find();
     // console.log(list)
-    await this.ctx.render('admin/focus/index', {list})
+    await this.ctx.render('admin/focus/index', {list});
   }
 
   async add() {
