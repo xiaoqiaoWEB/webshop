@@ -63,11 +63,11 @@ class RoleController extends BaseController {
     for (var i = 0; i < access_node.length; i++) {
       let accessRoleData = new this.ctx.model.AccessRole({
         role_id,
-        access_id:access_node[i]
-      })
+        access_id: access_node[i],
+      });
       accessRoleData.save();
     }
-    await this.success('/admin/role/auth?id=' + role_id, "授权成功");
+    await this.success('/admin/role/auth?id=' + role_id, '授权成功');
   }
 }
 
