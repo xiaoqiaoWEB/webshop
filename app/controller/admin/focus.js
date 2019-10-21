@@ -17,11 +17,13 @@ class FocusController extends BaseController {
   }
 
   async doAdd() {
+    // autoFields: true  获得上传的 除去文件之外的信息
+    // 数据流  parts
     let parts = this.ctx.multipart({autoFields: true});
     let files = {};
     let stream; 
-    while( (stream = await parts()) != null) {
-      if( !stream.filename ) {
+    while ( (stream = await parts()) != null) {
+      if ( !stream.filename ) {
         break;
       }
       let fieldname = stream.fieldname;
@@ -38,7 +40,7 @@ class FocusController extends BaseController {
     }
 
     // 保存
-    let focus = new this.ctx.model.Focus(Object.assign(files, parts.field))
+    let focus = new this.ctx.model.Focus(Object.assign(files, parts.field));
     await focus.save();
 
     await this.success('/admin/focus', '增加轮播图成功');

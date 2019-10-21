@@ -30,10 +30,9 @@ class ToolsService extends Service {
   }
 
   async getUploadFile(filename) {
-    //console.log('AAA')
 
     // 获取当前日期
-    var day=sd.format(new Date(), 'YYYYMMDD');
+    const day = sd.format(new Date(), 'YYYYMMDD');
     // 创建图片保存的路径
     var dir=path.join(this.config.uploadDir,day);
 
@@ -45,9 +44,9 @@ class ToolsService extends Service {
     var uploadDir=path.join(dir, d + path.extname(filename));
 
     return {
-      uploadDir:uploadDir,
-      saveDir:uploadDir.slice(3).replace(/\\/g,'/')
-    }
+      uploadDir,
+      saveDir: uploadDir.slice(3).replace(/\\/g, '/'),
+    };
   }
 }
 

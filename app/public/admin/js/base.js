@@ -1,5 +1,6 @@
 //import { app } from "egg-mock/bootstrap";
 
+
 $(function () {
 	app.init();
 })

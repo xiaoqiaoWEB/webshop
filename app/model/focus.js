@@ -1,3 +1,4 @@
+'use strict';
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
@@ -6,31 +7,31 @@ module.exports = app => {
 
   const FocusSchema = new Schema({
     title: {
-      type: String
+      type: String,
     },
-    // 1 pc 2webApp 3 小程序
+    // 1 pc 2 webApp 3 小程序
     type: {
-      type: Number
+      type: Number,
     },
     focus_img: {
-      type: String
+      type: String,
     },
     link: {
-      type: String
+      type: String,
     },
     sort: {
       type: Number,
-      default: 200
+      default: 200,
     },
     status: {
       type: Number,
-      default: 1
+      default: 1,
     },
     add_time: {
       type: Number,
-      default: d.getTime()
-    }
-  })
+      default: d.getTime(),
+    },
+  });
 
   return mongoose.model('Focus', FocusSchema, 'focus');
 }

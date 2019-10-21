@@ -20,7 +20,7 @@ module.exports = appInfo => {
 
   config.adminauth = {
     match: '/admin',
-  }
+  };
 
   config.session = {
     key: 'SESSION_ID',
@@ -28,7 +28,7 @@ module.exports = appInfo => {
     httpOnly: true,
     encrypt: true,
     renew: true,
-  }
+  };
 
   config.uploadDir = 'app/public/admin/upload'
 
@@ -41,12 +41,12 @@ module.exports = appInfo => {
   config.view = {
     mapping: {
       '.html': 'ejs',
-    }
-  }
+    },
+  };
 
   config.mongoose = {
     url: 'mongodb://127.0.0.1:27017/eggshop',
-  } 
+  };
 
   // add your user config here
   const userConfig = {
