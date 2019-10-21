@@ -15,6 +15,7 @@
                         <th>属性值的录入方式</th>
                         <th>可选值列表</th>    
                         <th>添加时间</th>
+                        <th>排序</th>
                         <th class="text-center">状态</th>      
                         <th class="text-center">操作</th>
                     </tr>
@@ -42,6 +43,10 @@
                         </td>
                         <td><%=list[i].attr_value%></td>
                         <td><%= helper.relativeTime(list[i].add_time) %></td>
+                        <td>
+                            <!-- <%=list[i].sort%> -->
+                            <div onclick="app.editNum(this, 'GoodsTypeAttribute', 'sort', '<%=list[i]._id%>')"><%=list[i].sort%></div>
+                        </td>
                         <td class="text-center">
                             <%if( list[i].status == 1){%>
                             <img src="/public/admin/images/yes.gif" alt=""

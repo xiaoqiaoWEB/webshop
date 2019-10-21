@@ -7,11 +7,11 @@ module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
 
-  // loing
+  // main
   router.get('/admin', controller.admin.main.index);
   router.get('/admin/welcome', controller.admin.main.welcome);
 
-
+  // login
   router.get('/admin/login', controller.admin.login.index);
   router.post('/admin/doLogin', controller.admin.login.doLogin);
   router.get('/admin/loginOut', controller.admin.login.loginOut);
@@ -65,6 +65,6 @@ module.exports = app => {
   router.get('/admin/verify', controller.admin.base.verify);
   // 改变状态
   router.get('/admin/changeStatus', controller.admin.base.changeStatus);
-  // 改变 排序  价格 == 
+  // 改变 排序  价格 ==
   router.get('/admin/editNum', controller.admin.base.editNum);
 };

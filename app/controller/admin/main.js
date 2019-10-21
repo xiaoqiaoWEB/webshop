@@ -1,6 +1,6 @@
 'use strict';
 
-var BaseController = require('./base.js');
+const BaseController = require('./base.js');
 
 class MainController extends BaseController {
   async index() {
