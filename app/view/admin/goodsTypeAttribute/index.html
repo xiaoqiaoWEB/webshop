@@ -2,7 +2,8 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a href="/admin/goodsTypeAttribute/add?id=<%=cate_id%>" class="btn btn-primary">增加商品类型属性</a>
+        <!-- <span>商品类型属性</span> -->
+        <a href="/admin/goodsTypeAttribute/add?id=<%=cate_id%>" class="btn btn-primary right-btn-r">增加商品类型属性</a>
     </div>
     <div class="panel-body">
         <div class="table-responsive">
@@ -58,7 +59,7 @@
                         </td>
                        
                         <td class="text-center">
-                            <a href="">修改</a>　
+                            <a href="/admin/goodsTypeAttribute/edit?id=<%=list[i]._id%>">修改</a>　
                             <a  class="delete" href="">删除</a>
                         </td>
                     </tr>

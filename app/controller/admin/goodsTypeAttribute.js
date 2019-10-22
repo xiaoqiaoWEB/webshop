@@ -49,6 +49,31 @@ class GoodsTypeAttributeController extends BaseController {
 
     await this.success('/admin/goodsTypeAttribute?id=' + this.ctx.request.body.cate_id, '增加商品类型属性成功');
   }
+
+  async edit() {
+    let id = this.ctx.request.query.id;
+    let result = await this.ctx.model.GoodsTypeAttribute.find({'_id': id});
+    let goodsType = await this.ctx.model.GoodsType.find({});
+
+    await this.ctx.render('/admin/goodsTypeAttribute/edit', {
+      goodsTypeList: goodsType,
+      detailt: result[0],
+    });
+  }
+
+  async doEdit() {
+    let id = this.ctx.request.body._id;
+    let data = this.ctx.request.body;
+    let cate_id = this.ctx.request.body.cate_id;
+    let suc = await this.ctx.model.GoodsTypeAttribute.updateOne({'_id': id}, {
+      cate_id,
+      title: data.title,
+      attr_type: data.attr_type,
+      attr_value: data.attr_value,
+      sort: data.sort,
+    });
+    await this.success('/admin/goodsTypeAttribute?id=' + this.ctx.request.body.cate_id, '修改商品类型属性成功！');
+  }
 }
 
 module.exports = GoodsTypeAttributeController;
