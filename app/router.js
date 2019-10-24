@@ -61,6 +61,10 @@ module.exports = app => {
   router.get('/admin/goodsTypeAttribute/edit', controller.admin.goodsTypeAttribute.edit);
   router.post('/admin/goodsTypeAttribute/doEdit', controller.admin.goodsTypeAttribute.doEdit);
 
+  // 商品分类
+  router.get('/admin/goodsCate', controller.admin.goodsCate.index);
+
+
   // 公共路由
   router.get('/admin/delete', controller.admin.base.delete);
   // 验证码
