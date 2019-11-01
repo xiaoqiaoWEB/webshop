@@ -63,6 +63,8 @@ module.exports = app => {
 
   // 商品分类
   router.get('/admin/goodsCate', controller.admin.goodsCate.index);
+  router.get('/admin/goodsCate/add', controller.admin.goodsCate.add);
+  router.post('/admin/goodsCate/doAdd', controller.admin.goodsCate.doAdd);
 
 
   // 公共路由

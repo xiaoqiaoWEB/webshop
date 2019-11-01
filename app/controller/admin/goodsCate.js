@@ -11,10 +11,13 @@ class GoodsCateController extends BaseController {
     await this.ctx.render('admin/goodsCate/add');
   }
 
+  async doAdd() {
+    
+  }
+
   async edit() {
     await this.ctx.render('admin/goodsCate/edit');
   }
-  
 }
 
 module.exports = GoodsCateController;
