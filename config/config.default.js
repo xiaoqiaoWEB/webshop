@@ -47,6 +47,11 @@ module.exports = appInfo => {
   config.mongoose = {
     url: 'mongodb://127.0.0.1:27017/eggshop',
   };
+  
+  // 配置表单数量
+  config.multipart = {
+    fields: '50',
+  };
 
   // add your user config here
   const userConfig = {

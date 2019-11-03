@@ -7,7 +7,6 @@
 		<div class="table-responsive input-form">
 			<form action="/admin/goodsCate/doAdd?_csrf=<%=csrf%>" method="post" enctype="multipart/form-data">
 				<ul>
-					<!-- <input type="hidden" name="_csrf" value="<%=csrf%>"> -->
 					<li> 分类名称: <input type="text" name="title" /></li>
 					<li> <span>上级分类:</span>
 						<select name="pid" id="pid">
@@ -33,7 +32,7 @@
         
                             <li>  <span>Seo描述:</span> <textarea name="description" id="description" cols="84" rows="4"></textarea></li>                   
 
-                            <li>  <span>排　　序:</span> <input type="text" name="sort"/></li>       
+                            <li>  <span>排　　序:</span> <input type="text" name="sort"/ value="100"></li>       
                             
                             <li>  <span>状　　态:</span> <input type="radio" name="status" checked value="1" id="a"/> <label for="a">显示</label>    <input type="radio" name="status" value="0" id="b"/><label for="b">隐藏</label> 　</li>
 
