@@ -12,7 +12,7 @@ const app = {
 	},
 	toggleAside: function () {
 
-
+		$('.aside>li:nth-child(1) ul,.aside>li:nth-child(2) ul,.aside>li:nth-child(3) ul').hide();
 		$('.aside h4').click(function () {
 
 
@@ -72,8 +72,8 @@ const app = {
 
 	},
 
-	resizeIframe: function(){
-		var heights = document.documentElement.clientHeight-100;	
+	resizeIframe: function () {
+		var heights = document.documentElement.clientHeight - 100;
 		document.getElementById('rightMain').height = heights
 	},
 

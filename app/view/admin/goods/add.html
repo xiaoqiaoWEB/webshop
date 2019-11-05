@@ -1,0 +1,46 @@
+<%- include ../public/shop_header.html %>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="table-responsive input-form">
+            <form action="/admin/goods/doAdd" method="post" class="goods_content">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#general"  role="tab" data-toggle="tab">通用信息</a></li>
+                    <li role="presentation"><a href="#detail" role="tab" data-toggle="tab">详细描述</a></li>
+                    <li role="presentation"><a href="#mix"  role="tab" data-toggle="tab">商品属性</a></li>
+                    <li role="presentation"><a href="#attribute"  role="tab" data-toggle="tab">规格与包装</a></li>
+                    <li role="presentation"><a href="#photo"  role="tab" data-toggle="tab">商品相册</a></li>              
+                    
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="general">
+                        11111
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="detail">
+                        ddd
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="mix">
+                            ss
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="attribute">
+                        123
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="photo">
+
+                            商品相册
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf" value="<%=csrf%>">  
+
+                <button type="submit" class="btn btn-success goods_content_btn">提交</button> 
+            </form>
+        </div>
+    </div>
+  </div>
+
+
+</div>
+
+</body>
+
+</html>
