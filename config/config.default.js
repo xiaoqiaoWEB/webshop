@@ -47,11 +47,23 @@ module.exports = appInfo => {
   config.mongoose = {
     url: 'mongodb://127.0.0.1:27017/eggshop',
   };
-  
+
   // 配置表单数量
   config.multipart = {
     fields: '50',
   };
+
+  config.security = {
+    csrf: {
+      // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
+      ignore: ctx => {
+        if (ctx.request.url == '/admin/goods/goodsUploadImage') {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
 
   // add your user config here
   const userConfig = {

@@ -71,6 +71,10 @@ module.exports = app => {
   // 商品列表
   router.get('/admin/goods', controller.admin.goods.index);
   router.get('/admin/goods/add', controller.admin.goods.add);
+  router.post('/admin/goods/doAdd', controller.admin.goods.doAdd);
+
+  router.get('/admin/goods/getGoodsTypeAttribute', controller.admin.goods.getGoodsTypeAttribute);
+  router.post('/admin/goods/goodsUploadImage', controller.admin.goods.goodsUploadImage);
 
   // 公共路由
   router.get('/admin/delete', controller.admin.base.delete);
