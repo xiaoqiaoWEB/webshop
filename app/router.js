@@ -72,9 +72,10 @@ module.exports = app => {
   router.get('/admin/goods', controller.admin.goods.index);
   router.get('/admin/goods/add', controller.admin.goods.add);
   router.post('/admin/goods/doAdd', controller.admin.goods.doAdd);
-
   router.get('/admin/goods/getGoodsTypeAttribute', controller.admin.goods.getGoodsTypeAttribute);
   router.post('/admin/goods/goodsUploadImage', controller.admin.goods.goodsUploadImage);
+  router.post('/admin/goods/goodsUploadPhoto', controller.admin.goods.goodsUploadPhoto);
+
 
   // 公共路由
   router.get('/admin/delete', controller.admin.base.delete);

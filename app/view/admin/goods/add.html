@@ -12,10 +12,17 @@
 <script type="text/javascript" src="/public/admin/wysiwyg-editor/js/froala_editor.pkgd.min.js"></script>
 <script type="text/javascript" src="/public/admin/wysiwyg-editor/js/zh_cn.js"></script>
 
+<!-- 批量上传图片插件 -->
+
+<link rel="stylesheet" type="text/css" href="/public/admin/webuploader/css/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/public/admin/webuploader/css/diyUpload.css">
+<script type="text/javascript" src="/public/admin/webuploader/js/webuploader.html5only.min.js"></script>
+<script type="text/javascript" src="/public/admin/webuploader/js/diyUpload.js"></script>
+
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="table-responsive input-form">
-            <form action="/admin/goods/doAdd" method="post" class="goods_content">
+            <form action="/admin/goods/doAdd?_csrf=<%=csrf%>" method="post" class="goods_content" enctype="multipart/form-data">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab">通用信息</a></li>
@@ -32,14 +39,20 @@
                             <li> <span> 附属标题:</span> <input type="text" name="sub_title" class="input" /></li>
                             <li> <span>商品版本:</span> <input type="text" name="goods_version" class="input" /></li>
                             <li> <span>所属分类:</span>
-                                <select name="cid" id="cid">
+                                <select name="cate_id" id="cid">
+                                    <%for(var i=0; i<goodsCateList.length; i++){%>
+                                    <option value="<%=goodsCateList[i]._id%>"><%=goodsCateList[i].title%></option>
+                                    <%for(var j=0; j<goodsCateList[i].item.length; j++){%>
+                                    <option value="<%=goodsCateList[i].item[j]._id%>">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=goodsCateList[i].item[j].title%></option>
+                                    <%}%>
+                                    <%}%>
                                 </select>
                                 <input type="hidden" name="cname" id="cname" />
-
                             </li>
-                            <li> <span> 商品图片:</span> <input type="file" name="pic" /></li>
-                            <li> <span>商品价格:</span> <input type="text" name="price" /></li>
-                            <li> <span>商品原价:</span> <input type="text" name="old_price" /></li>
+                            <li> <span> 商品图片:</span> <input type="file" name="goods_img" /></li>
+                            <li> <span>商品价格:</span> <input type="text" name="shop_price" /></li>
+                            <li> <span>商品原价:</span> <input type="text" name="market_price" /></li>
 
                             <li> <span>商品状态:</span>　<input type="radio" value="1" name="status" checked /> 显示 　
                                 <input type="radio" value="0" name="status" /> 隐藏
@@ -52,7 +65,7 @@
                         </ul>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="detail">
-                        <textarea name="content" id="content" cols="100" rows="8"></textarea>
+                        <textarea name="goods_content" id="content" cols="100" rows="8"></textarea>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="mix">
                         <ul class="form_input">
@@ -60,31 +73,51 @@
                             <li>
                                 <span>商品颜色:</span>
                                 <%for(var i=0; i<colorlist.length; i++){%>
-                                <input type="checkbox" name="colors[]" value="<%=colorlist[i]._id%>"
-                                    id="<%=colorlist[i]._id%>">
-                                <label for="<%=colorlist[i]._id%>"><%=colorlist[i].color_name%></label>
+                                    <input 
+                                        type="checkbox" 
+                                        name="goods_color" 
+                                        value="<%=colorlist[i]._id%>"
+                                        id="<%=colorlist[i]._id%>"
+                                    >
+                                    <label for="<%=colorlist[i]._id%>"><%=colorlist[i].color_name%></label>
                                 <%}%>
                              </li>
 
-                             <li> 
-                                 <span>关联商品:</span>
-                                
+                             <li> <span>关联商品:</span>
+                                            
                                 <input type="text" name="relation_goods" class="relation_goods"/>  <i>填写关联商品的id 多个以逗号隔开 格式：23,24,39</i>
-                                
-                            </li>      
-                            <li> 
-                                <span>关联赠品:</span>
-                                
+                            
+                        </li>      
+                        
+                        
+                        <li> <span>关联赠品:</span>
+                            
                                 <input type="text" name="goods_gift" class="goods_gift"/>  <i>可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示商品数量</i>
-                            </li>    
-                            <li> 
-                                <span>关联配件:</span>
-                                <input type="text" name="goods_fitting" class="goods_fitting"/>  <i>可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示商品数量</i>
-                            </li>    
-                            <li> 
-                                <span>更多属性:</span>
+                            
+                        </li>    
+                        <li> <span>关联配件:</span>
+                            
+                            <input type="text" name="goods_fitting" class="goods_fitting"/>  <i>可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示商品数量</i>
+                        
+                        </li>    
+
+
+                        <li> <span>更多属性:</span>
+                            
                                 <input type="text" name="goods_attr" class="goods_attr"/>  <i> 格式:  颜色:红色,白色,黄色 | 尺寸:41,42,43</i>
-                            </li>
+                            
+                        </li>
+
+                        <li> <span>Seo关键词:</span>
+                            
+                            <input type="text" name="goods_keywords" class="goods_keywords"/>  
+                        
+                        </li>
+
+                        <li> <span>Seo描述:</span>                                                
+                            <textarea name="goods_desc" id="goods_desc" cols="100" rows="2"></textarea>
+                        
+                        </li>
                         </ul>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="attribute">
@@ -106,11 +139,11 @@
                             </ul>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="photo">
-                        相册
+                        <div id="photoLib"  class="photoLib"></div>
+                        <div id="photoList"></div>
                     </div>
                 </div>
                 <input type="hidden" name="_csrf" value="<%=csrf%>">
-
                                 <button type="submit" class="btn btn-success goods_content_btn">提交</button>
             </form>
         </div>
@@ -129,19 +162,19 @@
                 var li = data[i];
                 if (li.attr_type == 1) {
                     str += '<li><span>' + data[i].title +
-                        ': 　</span><input type="hidden" name="attr_id_list[]" value="' + data[i]._id +
-                        '" />  <input type="text" name="attr_value_list[]" /></li>'
+                        ': 　</span><input type="hidden" name="attr_id_list" value="' + data[i]._id +
+                        '" />  <input type="text" name="attr_value_list" /></li>'
                 } else if (li.attr_type == 2) {
                     str += '<li><span>' + data[i].title +
-                        ': 　</span> <input type="hidden" name="attr_id_list[]" value="' + data[i]._id +
-                        '">  <textarea cols="50" rows="3" name="attr_value_list[]"></textarea></li>'
+                        ': 　</span> <input type="hidden" name="attr_id_list" value="' + data[i]._id +
+                        '">  <textarea cols="50" rows="3" name="attr_value_list"></textarea></li>'
                 } else {
                     var arr = data[i].attr_value.split('\n');
                     str += '<li><span>' + data[i].title +
-                        ': 　</span><input type="hidden" name="attr_id_list[]" value="' + data[i]._id +
+                        ': 　</span><input type="hidden" name="attr_id_list" value="' + data[i]._id +
                         '">';
 
-                    str += '<select name="attr_value_list[]">';
+                    str += '<select name="attr_value_list">';
 
                     for (var j = 0; j < arr.length; j++) {
 
@@ -189,6 +222,25 @@
             ]
         });
     });
+</script>
+<script>
+    //批量上传图片
+    $(function () {
+        var photoStr = '';
+        $('#photoLib').diyUpload({
+            url: '/admin/goods/goodsUploadPhoto',
+            success: function (response) {
+                // console.info( data );
+                photoStr = '<input type="hidden" name="goods_image_list" value=' + response.link +
+                    ' />';
+
+                $('#photoList').append(photoStr);
+            },
+            error: function (err) {
+                console.info(err);
+            }
+        });
+    })
 </script>
 </body>
 
