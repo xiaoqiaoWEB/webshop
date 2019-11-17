@@ -34,7 +34,7 @@ module.exports = app => {
       type: String
     },
     goods_attrs: {
-      type: String
+      type: String,
     },
     goods_version: {
       /*版本*/
@@ -69,18 +69,19 @@ module.exports = app => {
       type: Number
     },
     is_hot: {
-      type: Number
+      type: Number,
+      default: 0
     },
     is_best: {
-      type: Number
+      type: Number,
+      default: 0
     },
     is_new: {
-      type: Number
+      type: Number,
+      default: 0
     },
     goods_type_id: {
-      type: {
-        type: Schema.Types.ObjectId
-      }
+      type: Schema.Types.Mixed,
     },
     status: {
       type: Number,

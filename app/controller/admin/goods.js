@@ -17,18 +17,18 @@ class GoodsController extends BaseController {
     let typeList = await this.ctx.model.GoodsType.find({});
     // 商品分类
     let goodsCateList = await this.ctx.model.GoodsCate.aggregate([{
-        $lookup: {
-          from: 'goods_cate',
-          localField: '_id',
-          foreignField: 'pid',
-          as: 'item',
-        },
+      $lookup: {
+        from: 'goods_cate',
+        localField: '_id',
+        foreignField: 'pid',
+        as: 'item',
       },
-      {
-        $match: {
-          "pid": '0',
-        },
+    },
+    {
+      $match: {
+        "pid": '0',
       },
+    },
     ]);
 
     await this.ctx.render('admin/goods/add', {
@@ -163,7 +163,9 @@ class GoodsController extends BaseController {
       for (var i = 0; i < attr_value_list.length; i++) {
         //查询goods_type_attribute
         if (attr_value_list[i]) {
-          let goodsTypeAttributeResutl = await this.ctx.model.GoodsTypeAttribute.find({ "_id": attr_id_list[i]});
+          let goodsTypeAttributeResutl = await this.ctx.model.GoodsTypeAttribute.find({
+            "_id": attr_id_list[i]
+          });
 
           let goodsAttrRes = new this.ctx.model.GoodsAttr({
             goods_id: result._id,
