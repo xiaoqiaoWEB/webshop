@@ -7,7 +7,11 @@ const pump = require('mz-modules/pump');
 
 class GoodsController extends BaseController {
   async index() {
-    await this.ctx.render('admin/goods/index');
+    let goodsResult = await this.ctx.model.Goods.find({});
+    // console.log(goodsResult)
+    await this.ctx.render('admin/goods/index', {
+      list: goodsResult,
+    });
   }
 
   async add() {
