@@ -41,6 +41,7 @@ class GoodsController extends BaseController {
       goodsCateList,
     });
   }
+
   // 获得商品类型 属性
   async getGoodsTypeAttribute() {
     let cate_id = this.ctx.request.query.cate_id;
@@ -51,6 +52,7 @@ class GoodsController extends BaseController {
       list,
     };
   }
+
   // 富文本图片上传
   async goodsUploadImage() {
     // 实现图片上传
@@ -141,6 +143,12 @@ class GoodsController extends BaseController {
 
     let formData = Object.assign(files, parts.field);
 
+    if(formData.goods_color && formData.goods_color.constructor === Array ) {
+      formData.goods_color = formData.goods_color.join(',');
+    }
+
+    console.log(formData)
+
     // 保存商品信息
     let goodsData = new this.ctx.model.Goods(formData);
     let result = await goodsData.save();
@@ -185,9 +193,37 @@ class GoodsController extends BaseController {
       }
 
     }
-
     await this.success('/admin/goods', '增加商品数据成功');
   }
-}
 
+  async edit() {
+    console.log(this.ctx.request.query)
+    let goodsResult = await this.ctx.model.Goods.find({"_id": this.ctx.request.query.id});
+    // 颜色列表
+    let colorlist = await this.ctx.model.GoodsColor.find({});
+    // 商品类型列表
+    let typeList = await this.ctx.model.GoodsType.find({});
+    // 商品分类
+    let goodsCateList = await this.ctx.model.GoodsCate.aggregate([{
+      $lookup: {
+        from: 'goods_cate',
+        localField: '_id',
+        foreignField: 'pid',
+        as: 'item',
+      },
+    },
+    {
+      $match: {
+        "pid": '0',
+      },
+    },
+    ]);
+    await this.ctx.render('admin/goods/edit',{
+      colorlist,
+      typeList,
+      goodsCateList,
+      goodsResult: goodsResult[0]
+    });
+  }
+}
 module.exports = GoodsController;

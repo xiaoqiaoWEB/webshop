@@ -75,6 +75,7 @@ module.exports = app => {
   router.get('/admin/goods/getGoodsTypeAttribute', controller.admin.goods.getGoodsTypeAttribute);
   router.post('/admin/goods/goodsUploadImage', controller.admin.goods.goodsUploadImage);
   router.post('/admin/goods/goodsUploadPhoto', controller.admin.goods.goodsUploadPhoto);
+  router.get('/admin/goods/edit', controller.admin.goods.edit);
 
 
   // 公共路由

@@ -50,7 +50,7 @@ module.exports = app => {
       type: String,
     },
     goods_color: {
-      type: Array,
+      type: String,
     },
     goods_keywords: {
       type: String
