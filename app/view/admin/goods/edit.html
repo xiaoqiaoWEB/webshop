@@ -103,58 +103,56 @@
 
                              <li> <span>关联商品:</span>
                                             
-                                <input type="text" name="relation_goods" class="relation_goods"/>  <i>填写关联商品的id 多个以逗号隔开 格式：23,24,39</i>
+                                <input type="text" name="relation_goods" class="relation_goods" value="<%=goodsResult.relation_goods%>" />  <i>填写关联商品的id 多个以逗号隔开 格式：23,24,39</i>
                             
                         </li>      
                         
                         
                         <li> <span>关联赠品:</span>
                             
-                                <input type="text" name="goods_gift" class="goods_gift"/>  <i>可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示商品数量</i>
+                                <input type="text" name="goods_gift" class="goods_gift" value="<%=goodsResult.goods_gift%>"/>  <i>可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示商品数量</i>
                             
                         </li>    
                         <li> <span>关联配件:</span>
                             
-                            <input type="text" name="goods_fitting" class="goods_fitting"/>  <i>可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示商品数量</i>
+                            <input type="text" name="goods_fitting" class="goods_fitting" value="<%=goodsResult.goods_fitting%>"/>  <i>可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示商品数量</i>
                         
                         </li>    
 
 
                         <li> <span>更多属性:</span>
                             
-                                <input type="text" name="goods_attr" class="goods_attr"/>  <i> 格式:  颜色:红色,白色,黄色 | 尺寸:41,42,43</i>
+                                <input type="text" name="goods_attr" class="goods_attr" value="<%=goodsResult.goods_attr%>"/>  <i> 格式:  颜色:红色,白色,黄色 | 尺寸:41,42,43</i>
                             
                         </li>
 
                         <li> <span>Seo关键词:</span>
                             
-                            <input type="text" name="goods_keywords" class="goods_keywords"/>  
+                            <input type="text" name="goods_keywords" class="goods_keywords" value="<%=goodsResult.goods_keywords%>"/>  
                         
                         </li>
 
                         <li> <span>Seo描述:</span>                                                
-                            <textarea name="goods_desc" id="goods_desc" cols="100" rows="2"></textarea>
-                        
+                            <textarea name="goods_desc" id="goods_desc" cols="100" rows="2">
+                                <%=goodsResult.goods_desc%>
+                            </textarea>
                         </li>
                         </ul>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="attribute">
-                            <ul class="form_input">
-
-                                    <li> <span>商品类型:　</span>
-                                        
-                                        <select name="goods_type_id" id="goods_type_id">
-
-                                            <option value="0">--请选择商品类型--</option>
-                                            <%for(var i=0; i<typeList.length; i++){%>
-                                <option value="<%=typeList[i]._id%>"><%=typeList[i].title%></option>
-                                <%}%>
-                                        </select>
-    
-                                     </li>
-                            </ul>
-                            <ul class="form_input" id="goods_type_attribute">
-                            </ul>
+                        <ul class="form_input">
+                            <li> <span>商品类型:　</span>
+                                <select name="goods_type_id" id="goods_type_id">
+                                    <option value="0">--请选择商品类型--</option>
+                                    <%for(var i=0; i<typeList.length; i++){%>
+                                    <option value="<%=typeList[i]._id%>" <%if(goodsResult.goods_type_id.toString()==typeList[i]._id.toString()){%>selected<%}%>><%=typeList[i].title%></option>
+                                    <%}%>
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="form_input" id="goods_type_attribute">
+                            <%-goodsAttsStr%>
+                        </ul>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="photo">
                         <div id="photoLib"  class="photoLib"></div>
@@ -170,9 +168,18 @@
 
 
 </div>
+<div id="goods_attr_value" style="display:none">
+        <%-goodsAttsStr%>
+</div>
 <script>
     $('#goods_type_id').change(function () {
         var cate_id = $(this).val();
+
+        if(cate_id=='<%=goodsResult.goods_type_id.toString()%>'){
+            $('#goods_type_attribute').html($('#goods_attr_value').html());    
+            return;                        
+        }
+
         $.get(`/admin/goods/getGoodsTypeAttribute?cate_id=${cate_id}`, function (res) {
             var data = res.list;
             var str = '';
