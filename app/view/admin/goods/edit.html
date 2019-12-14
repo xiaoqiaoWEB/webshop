@@ -155,6 +155,23 @@
                         </ul>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="photo">
+                        <div id="goods_image">    
+                             <ul id="goods_image_list" class="goods_image_list clear">
+                                 <%for(var i=0;i<goodsImage.length;i++){%>
+                                     <li>
+                                        <img class="pic" src="<%=goodsImage[i].img_url%>" />
+                                        <div class="color_list">
+                                            <select name="color_id" id="color_id">
+                                                <option value="0">关联颜色</option>
+                                                <option value="1">白色</option>
+                                                <option value="2">黑色</option>
+                                                <option value="3">黄色</option>
+                                            </select>                                                        
+                                        </div>
+                                    </li>
+                                <%}%>
+                            </ul>
+                        </div>
                         <div id="photoLib"  class="photoLib"></div>
                         <div id="photoList"></div>
                     </div>

@@ -173,7 +173,7 @@ class GoodsController extends BaseController {
     if (result._id && attr_id_list && attr_value_list) {
 
       for (var i = 0; i < attr_value_list.length; i++) {
-        //查询goods_type_attribute
+        // 查询goods_type_attribute
         if (attr_value_list[i]) {
           let goodsTypeAttributeResutl = await this.ctx.model.GoodsTypeAttribute.find({
             "_id": attr_id_list[i]
@@ -253,12 +253,15 @@ class GoodsController extends BaseController {
       }
     })
 
+    let goodsImage = await this.ctx.model.GoodsImage.find({'goods_id': this.ctx.request.query.id});
+
     await this.ctx.render('admin/goods/edit', {
       colorlist,
       typeList,
       goodsCateList,
       goodsResult: goodsResult[0],
-      goodsAttsStr
+      goodsAttsStr,
+      goodsImage,
     });
   }
 }
