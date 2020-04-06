@@ -6,15 +6,15 @@ const url = require('url');
 class AdminService extends Service {
   async checkAuth() {
 
-    //1、获取当前用户的角色
-    let userInfo = this.ctx.session.userInfo;
-    let role_id = userInfo.role_id;
+    // 1、获取当前用户的角色
+    const userInfo = this.ctx.session.userInfo;
+    const role_id = userInfo.role_id;
 
     // 获取当前访问的地址
-    let pathName = url.parse(this.ctx.request.url).pathname;
+    const pathName = url.parse(this.ctx.request.url).pathname;
 
-    //忽略权限判断的地址    is_super = 1表示是超级管理员
-    let ignoreUrl=['/admin/login','/admin/doLogin','/admin/verify','/admin/loginOut'];
+    // 忽略权限判断的地址    is_super = 1表示是超级管理员
+    const ignoreUrl = ['/admin/login','/admin/doLogin','/admin/verify','/admin/loginOut'];
     if(ignoreUrl.indexOf(pathName) != -1 || userInfo.is_super == 1) {
       return true;
     }
