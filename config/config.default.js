@@ -24,4 +24,5 @@ module.exports = appInfo => {
     ...config,
     ...userConfig,
   };
-};
+// eslint-disable-next-line semi
+}
