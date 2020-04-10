@@ -6,6 +6,6 @@
 
 module.exports = app => {
   const { router, controller } = app;
-  router.post('/news', controller.news.news.list);
-  router.get('/news/:id/detail', controller.news.news.detail);
+  router.get('/admin/login', controller.admin.login.login);
+  router.get('/admin/verify', controller.admin.base.verify);
 };

@@ -1,0 +1,26 @@
+'use strict';
+
+const Service = require('egg').Service;
+const svgCaptcha = require('svg-captcha');
+
+class ToolService extends Service {
+  async getcaptcha() {
+    const { ctx } = this;
+    const captcha = svgCaptcha.createMathExpr({
+      size: 6,
+      fontSize: 42,
+      width: 100,
+      height: 34,
+      noise: 2,
+      color: 'red',
+      mathMin: 2,
+      mathMax: 50,
+      background: '#666666',
+    });
+    /* 验证码上面的信息 */
+    ctx.session.code = captcha.text;
+    return captcha;
+  }
+}
+
+module.exports = ToolService;

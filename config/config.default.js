@@ -18,6 +18,13 @@ module.exports = appInfo => {
   // mongose
   config.mongoose = { url: 'mongodb://127.0.0.1/apishop' };
 
+  // view
+  config.view = {
+    mapping: {
+      '.html': 'ejs',
+    },
+  };
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
