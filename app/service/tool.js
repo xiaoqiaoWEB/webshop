@@ -2,6 +2,7 @@
 
 const Service = require('egg').Service;
 const svgCaptcha = require('svg-captcha');
+const md = require('md5');
 
 class ToolService extends Service {
   async getcaptcha() {
@@ -20,6 +21,10 @@ class ToolService extends Service {
     /* 验证码上面的信息 */
     ctx.session.code = captcha.text;
     return captcha;
+  }
+
+  async md5(str) {
+    return md(str);
   }
 }
 

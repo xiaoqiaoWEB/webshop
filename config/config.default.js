@@ -19,15 +19,25 @@ module.exports = appInfo => {
   config.mongoose = { url: 'mongodb://127.0.0.1/apishop' };
 
   // view
-  config.view = {
-    mapping: {
-      '.html': 'ejs',
-    },
-  };
+  config.view = { mapping: { '.html': 'ejs' } };
+
+  // middleware
+  config.middleware = [ 'adminauth' ];
+  config.adminauth = { match: '/admin' };
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+  };
+
+  // session
+  config.session = {
+    key: 'SESSION_ID',
+    maxAge: 864000,
+    httpOnly: true,
+    encrypt: true,
+    // 延长会话有效期
+    renew: true,
   };
 
   return {
