@@ -14,8 +14,8 @@ class ToolService extends Service {
       height: 34,
       noise: 2,
       color: 'red',
-      mathMin: 2,
-      mathMax: 50,
+      mathMin: 1,
+      mathMax: 10,
       background: '#666666',
     });
     /* 验证码上面的信息 */
