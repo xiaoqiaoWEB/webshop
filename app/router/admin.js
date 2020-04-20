@@ -13,7 +13,7 @@ module.exports = app => {
   router.post('/admin/doLogin', controller.admin.login.doLogin);
   router.get('/admin/loginOut', controller.admin.login.loginOut);
 
-
+  // role auth
   router.get('/admin/role', controller.admin.role.index);
   router.get('/admin/role/add', controller.admin.role.add);
   router.post('/admin/role/doAdd', controller.admin.role.doAdd);
@@ -22,15 +22,21 @@ module.exports = app => {
   router.get('/admin/role/auth', controller.admin.role.auth);
   router.post('/admin/role/doAuth', controller.admin.role.doAuth);
 
+  // admin
   router.get('/admin/manager', controller.admin.mannger.index);
   router.get('/admin/manager/add', controller.admin.mannger.add);
   router.post('/admin/manager/doAdd', controller.admin.mannger.doAdd);
   router.get('/admin/manager/edit', controller.admin.mannger.edit);
   router.post('/admin/manager/doEdit', controller.admin.mannger.doAdd);
 
+  // access
   router.get('/admin/access', controller.admin.access.index);
   router.get('/admin/access/add', controller.admin.access.add);
   router.post('/admin/access/doAdd', controller.admin.access.doAdd);
   router.get('/admin/access/edit', controller.admin.access.edit);
   router.post('/admin/access/doEdit', controller.admin.access.doEdit);
+
+  // focus
+  router.get('/admin/focus', controller.admin.focus.index);
+  router.get('/admin/focus/add', controller.admin.focus.add);
 };

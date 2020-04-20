@@ -1,6 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
+const url = require('url');
 
 class AdminService extends Service {
   async getAythList(role_id) {
@@ -44,6 +45,44 @@ class AdminService extends Service {
       }
     }
     return result;
+  }
+
+  async checkAuth() {
+    /*
+        1、获取当前用户的角色        （忽略权限判断的地址    is_super）
+        2、根据角色获取当前角色的权限列表
+        3、获取当前访问的url 对应的权限id
+        4、判断当前访问的url对应的权限id 是否在权限列表中的id中
+    */
+
+    let role_id = this.ctx.session.userinfo.role_id;
+    let pathName = url.parse(this.ctx.request.url).pathname;
+
+    // 忽略权限判断的地址    is_super表示是管理员
+    let ignoreUrl= [ '/admin/login', '/admin/doLogin', '/admin/verify', '/admin/loginOut' ];
+
+
+    console.log(this.ctx.session.userinfo)
+
+    if(ignoreUrl.indexOf(pathName) != -1 || this.ctx.session.userinfo.is_super == 1) {
+      return true; // 允许访问
+    }
+
+    // 根据角色获取当前角色的权限列表
+    const roleAccess = await this.ctx.model.RoleAccess.find({ role_id });
+    let roleAccessArray = [];
+    roleAccess.forEach(el => {
+      roleAccessArray.push(el.access_id.toString());
+    });
+
+    let accessUrlResult = await this.ctx.model.Access.find({'url': pathName});
+    if(accessUrlResult.length > 0) {
+      if(roleAccessArray.indexOf(accessUrlResult[0]._id.toString()) >= 1) {
+        return true;
+      }
+      return false;
+    }
+    return false;
   }
 }
 
