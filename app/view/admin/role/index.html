@@ -32,7 +32,7 @@
                         <tr>
                             <td><%=list[i].title%></td>
                             <td><%=list[i].description%></td>
-                            <td><%=list[i].add_time%></td>
+                            <td><%=helper.formatTime(list[i].add_time)%></td>
 
                             <td class="text-center">
                                 <a href="/admin/role/edit?id=<%=list[i]._id%>">修改</a> 　　
