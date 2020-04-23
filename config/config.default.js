@@ -35,7 +35,7 @@ module.exports = appInfo => {
   // session
   config.session = {
     key: 'SESSION_ID',
-    maxAge: 864000,
+    maxAge: 8640000,
     httpOnly: true,
     encrypt: true,
     // 延长会话有效期

@@ -12,6 +12,11 @@ module.exports = app => {
   router.get('/admin/changeStatus', controller.admin.base.changeStatus);
   // delete
   router.get('/admin/delete', controller.admin.base.delete);
+  // editNum
+  router.get('/admin/editNum', controller.admin.base.editNum);
+
+  router.get('/admin', controller.admin.main.index);
+  router.get('/admin/welcome', controller.admin.main.welcome);
 
   router.get('/admin/login', controller.admin.login.login);
   router.post('/admin/doLogin', controller.admin.login.doLogin);

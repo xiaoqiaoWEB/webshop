@@ -18,7 +18,7 @@ class LoginController extends BaseController {
       const auth = await ctx.model.Admin.find({ username, password: pwd });
       if (auth.length > 0) {
         ctx.session.userinfo = auth[0];
-        ctx.redirect('/admin/role');
+        ctx.redirect('/admin');
       } else {
         await this.error('/admin/login', '用户名或者密码不对');
       }
