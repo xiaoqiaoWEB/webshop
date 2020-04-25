@@ -6,6 +6,7 @@ class GoodsTypeController extends BseController {
   async index() {
     const { ctx } = this;
     const list = await ctx.model.GoodsType.find();
+
     await ctx.render('admin/goodsType/index', {
       list,
     });

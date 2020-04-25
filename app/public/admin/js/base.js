@@ -7,14 +7,14 @@ $(function(){
 var app={
 
 
-	
+
 	init:function(){
 		this.toggleAside();
 
 		this.deleteConfirm();
 
 
-		this.resizeIframe();
+		// this.resizeIframe();
 
 	},
 
@@ -110,15 +110,8 @@ var app={
 
 
 
-
-
-
-
-
-
 	}
 }
-
 
 
 $(window).resize(function(){
