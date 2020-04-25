@@ -37,7 +37,7 @@ class ToolService extends Service {
 
   async getUploadFile(filename) {
     let day = sd.format(new Date(), 'YYYYMMDD');
-    console.log(day, '123')
+    // console.log(day, '123')
     let dir = path.join(this.config.uploadDir, day);
     await mkdirp(dir);
 

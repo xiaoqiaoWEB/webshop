@@ -62,7 +62,7 @@ class AdminService extends Service {
     let ignoreUrl= [ '/admin/login', '/admin/doLogin', '/admin/verify', '/admin/loginOut' ];
 
 
-    console.log(this.ctx.session.userinfo)
+    // console.log(this.ctx.session.userinfo)
 
     if(ignoreUrl.indexOf(pathName) != -1 || this.ctx.session.userinfo.is_super == 1) {
       return true; // 允许访问
