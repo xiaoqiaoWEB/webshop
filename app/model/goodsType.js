@@ -17,6 +17,5 @@ module.exports = app => {
       default: d.getTime(),
     },
   });
-
   return mongoose.model('GoodsType', GoodsTypeSchema, 'goods_type');
 };
