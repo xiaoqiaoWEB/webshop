@@ -79,4 +79,7 @@ module.exports = app => {
   router.get('/admin/goodsCate/edit', controller.admin.goodsCate.edit);
   router.post('/admin/goodsCate/doEdit', controller.admin.goodsCate.doEdit);
 
+  // goods
+  router.get('/admin/goods', controller.admin.goods.index);
+
 };
