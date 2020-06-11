@@ -83,4 +83,5 @@ module.exports = app => {
   router.get('/admin/goods', controller.admin.goods.index);
   router.get('/admin/goods/add', controller.admin.goods.add);
   router.post('/admin/goods/doAdd', controller.admin.goods.doAdd);
+  router.get('/admin/goods/goodsTypeAttribute', controller.admin.goods.goodsTypeAttribute);
 };

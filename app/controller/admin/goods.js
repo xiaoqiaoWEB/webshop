@@ -7,9 +7,16 @@ const pump = require('mz-modules/pump');
 class GoodsController extends BaseController {
   async index() {
     let { ctx } = this;
-    let result = await ctx.model.Goods.find({});
+    let page = this.ctx.request.query.page || 1;
+    let pageSize = 3;
+    let totalNum = await this.ctx.model.Goods.find({}).count();
+    let result = await ctx.model.Goods.find({}).skip((page - 1) * pageSize).limit(pageSize);
+
     await ctx.render('admin/goods/index', {
       list: result,
+      // eslint-disable-next-line no-undef
+      totalPages: Math.ceil(totalNum / pageSize),
+      page,
     });
   }
 
@@ -45,6 +52,21 @@ class GoodsController extends BaseController {
 
   async doAdd() {
     this.ctx.body = 'doadd';
+  }
+
+
+  // 获取商品类型的属性 api接口
+  async goodsTypeAttribute() {
+
+    let cate_id = this.ctx.request.query.cate_id;
+
+    // 注意 await
+    let goodsTypeAttribute = await this.ctx.model.GoodsTypeAttribute.find({ "cate_id": cate_id })
+
+    this.ctx.body = {
+      result: goodsTypeAttribute,
+    }
+
   }
 }
 
